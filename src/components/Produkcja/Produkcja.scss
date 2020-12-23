@@ -1,0 +1,22 @@
+.file-path {
+  display: block;
+  text-align: center;
+  padding: $padding;
+  font-weight: 700;
+  padding-bottom: 0;
+}
+
+.filter-list {
+  border: 1px dotted grey;
+  border-radius: 5px;
+  border-width: 2px;
+  padding: $padding $padding * 2;
+  li {
+    padding-bottom: $padding * 1.5;
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+}
+
+//wyszukiwarka wykończeń

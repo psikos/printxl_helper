@@ -1,0 +1,49 @@
+.wyszukiwarka {
+  padding: $padding/2 $padding;
+  border: none;
+  border-bottom: 1px solid grey;
+  outline: none;
+  margin: $padding 0 $padding / 3;
+  display: grid;
+  grid-template-columns: 1fr auto;
+
+  &:active,
+  &:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px dashed lighten($base-color, 20%);
+  }
+}
+
+.legend {
+  display: block;
+  text-align: center;
+  margin-bottom: $padding;
+  color: lighten(black, 50%);
+}
+
+.legend-element {
+  font-size: 0.8rem;
+  margin-right: $padding * 3;
+  display: inline-block;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -1.2rem;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    width: 1rem;
+    height: 1rem;
+  }
+  &:nth-child(1)::after {
+    background-color: $base-color;
+  }
+  &:nth-child(2)::after {
+    background-color: $second-base-color;
+  }
+  &:nth-child(3)::after {
+    background-color: $third-base-color;
+  }
+}

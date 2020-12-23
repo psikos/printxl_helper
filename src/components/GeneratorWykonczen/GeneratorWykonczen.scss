@@ -1,0 +1,15 @@
+.wykonczenia {
+  list-style: none;
+
+  li button {
+    outline: none;
+    border: none;
+    padding: $padding / 2 $padding;
+    width: 100%;
+    cursor: pointer;
+
+    &:hover {
+      font-weight: 600;
+    }
+  }
+}

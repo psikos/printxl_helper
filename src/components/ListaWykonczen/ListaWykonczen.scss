@@ -1,0 +1,31 @@
+.wyszukiwarka-list {
+  list-style: none;
+  margin-block-start: 0;
+  padding-inline-start: 0;
+
+  li {
+    display: inline-block;
+    padding: $padding / 2 $padding;
+    cursor: pointer;
+    margin: $padding / 2;
+    border-radius: 5px;
+    color: white;
+  }
+  .wyszukiwarka-link {
+    text-decoration: none;
+    color: white;
+  }
+  .wyszukiwarka-link-active {
+    font-weight: 900;
+  }
+}
+
+.winyle {
+  background-color: $base-color;
+}
+.sublimacja {
+  background-color: $second-base-color;
+}
+.mw {
+  background-color: $third-base-color;
+}

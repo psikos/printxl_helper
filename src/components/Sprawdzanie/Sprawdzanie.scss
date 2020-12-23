@@ -1,0 +1,16 @@
+.resolution-table {
+  border-collapse: collapse;
+  th,
+  td {
+    width: 150px;
+    height: 30px;
+    border: 2px dotted $base-color;
+    text-align: center;
+  }
+}
+
+.action-path {
+  display: block;
+  text-align: center;
+  font-weight: 700;
+}

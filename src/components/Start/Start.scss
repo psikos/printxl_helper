@@ -1,0 +1,37 @@
+.link {
+  text-decoration: none;
+  color: $second-base-color;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: $padding $padding * 1.5;
+
+  &:hover {
+    border-bottom: 2px solid $second-base-color;
+  }
+}
+
+.stages {
+  line-height: 2rem;
+  list-style: none;
+
+  @include onDesktop {
+    display: flex;
+  }
+
+  li {
+    padding: $padding;
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        &::before {
+          content: "#{$i}";
+          color: lighten($second-base-color, 34%);
+          position: absolute;
+          font-weight: 900;
+          font-size: 4rem;
+          z-index: -2;
+        }
+      }
+    }
+  }
+}
