@@ -6,10 +6,22 @@ import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
 import { Provider } from "react-redux";
 
+import { connect } from "react-redux";
+import { filterByGroup } from "./actions";
+
+const mapStateToProps = (state) => {
+  return {
+    group: state.group, // (1)
+  };
+};
+const mapDispatchToProps = { filterByGroup }; // (2)
+
+export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App); // (3)
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <AppContainer />
     </React.StrictMode>
   </Provider>,
   document.getElementById("root")

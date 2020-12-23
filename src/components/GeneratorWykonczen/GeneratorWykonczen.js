@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import wykonczenia from "../../wykonczenia";
 
+const inputs = {
+  name: ["naOkolo", "gora", "dol", "lewa", "prawa"],
+};
+
 const GeneratorWykonczen = () => {
   //lista wszystkich wykończeń
   const [listOfWykonczenia, setListOfWykonczenia] = useState(wykonczenia);
@@ -17,52 +21,52 @@ const GeneratorWykonczen = () => {
   //to co się wyświetla
   const [wykonczenie, setWykonczenie] = useState("");
 
-  const filterGroup = (e, value, key, toSet, input) => {
+  const filterGroup = (e, value, key, toSet, lists) => {
     e.preventDefault();
 
+    //jeżeli argument key ma wartość "group" to state group ustawiany jest na wartość "value", która jest stringiem reprezentującym wartość, która może znaleźć się w przeszukiwanym elemencie pod kluczem group, następnie filtrowana jest tablica wykonczenia zwracając do danego state - toSet - tablicę obiektów zawierającą obiekty z kluczem "group" o wartości "value"
     if (key === "group") {
       setGroup(value);
-      toSet(() => {
-        return wykonczenia.filter((elem) => {
-          value === elem[key] && setGroup(elem[key]);
+      toSet(
+        wykonczenia.filter((elem) => {
           return value === elem[key];
-        });
-      });
+        })
+      );
+
+      //aktualizuje wyświetalnie propozycji w poszczególnych listach
+      // tutaj do ogarnięcia
+      lists.forEach((list) =>
+        list(
+          wykonczenia.filter((elem) => {
+            return value === elem[key] && elem.name.includes(naOkolo);
+          })
+        )
+      );
     }
 
     if (key === "name") {
       group !== false &&
-        toSet(() => {
-          return wykonczenia.filter((elem) => {
-            return value === elem.group;
-          });
-        });
-      if (input.length > value.length) {
-        console.log("dupa");
-        toSet(() => {
-          return listOfWykonczenia.filter((elem) => elem[key].includes(value));
-        });
-      }
-      toSet(() => {
-        return listOfWykonczenia.filter((elem) => elem[key].includes(value));
-      });
+        toSet(
+          listOfWykonczenia.filter((elem) => {
+            return elem.name.includes(value);
+          })
+        );
     }
   };
-
-  // const handleGroupClick = (e, chosenGroup) => {
-  //   e.preventDefault();
-  //   setGroup(chosenGroup);
-  // };
 
   const handleWykonczenieClick = (e, stateToSet, name, kod) => {
     e.preventDefault();
     stateToSet(`${name} (${kod})`);
   };
 
+  // const handleSearchChange = (e) => {
+  //   searchWykonczenie(e.currentTarget.value);
+  // };
+
   useEffect(() => {
     let temp = "";
 
-    setNaOkoloList(listOfWykonczenia);
+    // setNaOkoloList(listOfWykonczenia);
 
     setWykonczenie(() => {
       if (naOkolo !== "") {
@@ -70,7 +74,7 @@ const GeneratorWykonczen = () => {
       }
       return temp;
     });
-  }, [naOkolo, listOfWykonczenia, naOkoloList, group]);
+  }, [naOkolo, group]);
 
   return (
     <div>
@@ -85,7 +89,9 @@ const GeneratorWykonczen = () => {
       <button
         className="winyle"
         onClick={(e) => {
-          filterGroup(e, "winyle", "group", setListOfWykonczenia, naOkolo);
+          filterGroup(e, "winyle", "group", setListOfWykonczenia, [
+            setNaOkoloList,
+          ]);
         }}
       >
         winyle
@@ -93,7 +99,9 @@ const GeneratorWykonczen = () => {
       <button
         className="sublimacja"
         onClick={(e) =>
-          filterGroup(e, "sublimacja", "group", setListOfWykonczenia, naOkolo)
+          filterGroup(e, "sublimacja", "group", setListOfWykonczenia, [
+            setNaOkoloList,
+          ])
         }
       >
         sublimacja
@@ -101,7 +109,7 @@ const GeneratorWykonczen = () => {
       <button
         className="mw"
         onClick={(e) =>
-          filterGroup(e, "mw", "group", setListOfWykonczenia, naOkolo)
+          filterGroup(e, "mw", "group", setListOfWykonczenia, [setNaOkoloList])
         }
       >
         folie i papiery
@@ -109,11 +117,15 @@ const GeneratorWykonczen = () => {
       <form>
         <label>
           NAOKOŁO:
+          {/* <input
+            onChange={handleSearchChange}
+            value={wykonczenieSearch}
+          ></input> */}
           <input
             onChange={(e) => {
               setNaOkolo(e.target.value);
               //tutaj jest problem bo przekazuje name i od nowa się filtruje tablica wcześniej wyfiltorwana przez group
-              filterGroup(e, e.target.value, "name", setNaOkoloList, naOkolo);
+              filterGroup(e, e.target.value, "name", setNaOkoloList);
             }}
             value={naOkolo}
           ></input>
