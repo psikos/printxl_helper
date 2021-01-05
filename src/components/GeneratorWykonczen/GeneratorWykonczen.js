@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import wykonczenia from "../../wykonczenia";
-
-const inputs = {
-  name: ["naOkolo", "gora", "dol", "lewa", "prawa"],
-};
+import Hamburger from "../Hamburger/Hamburger";
 
 const GeneratorWykonczen = () => {
   //lista wszystkich wykończeń
@@ -15,11 +12,17 @@ const GeneratorWykonczen = () => {
 
   //value inputa na około
   const [naOkolo, setNaOkolo] = useState("");
+
   //lista na około - powinno z tego się filtrować
   const [naOkoloList, setNaOkoloList] = useState(false);
 
+  const [isNaOkoloListVisible, setIsNaOkoloListVisible] = useState(false);
+
   //to co się wyświetla
   const [wykonczenie, setWykonczenie] = useState("");
+
+  const setArr = [setNaOkoloList];
+  const inputsArr = [setNaOkolo];
 
   const filterGroup = (e, value, key, toSet, lists) => {
     e.preventDefault();
@@ -59,15 +62,15 @@ const GeneratorWykonczen = () => {
     stateToSet(`${name} (${kod})`);
   };
 
-  // const handleSearchChange = (e) => {
-  //   searchWykonczenie(e.currentTarget.value);
-  // };
+  const handleReset = (e) => {
+    e.preventDefault();
+    setGroup(false);
+    setArr.forEach((setter) => setter(false));
+    inputsArr.forEach((input) => input(""));
+  };
 
   useEffect(() => {
     let temp = "";
-
-    // setNaOkoloList(listOfWykonczenia);
-
     setWykonczenie(() => {
       if (naOkolo !== "") {
         temp = `NAOKOŁO: ${naOkolo}`;
@@ -78,58 +81,58 @@ const GeneratorWykonczen = () => {
 
   return (
     <div>
-      <button
-        onClick={(e) => {
-          setGroup(false);
-          setListOfWykonczenia(wykonczenia);
-        }}
-      >
-        RESET
-      </button>
-      <button
-        className="winyle"
-        onClick={(e) => {
-          filterGroup(e, "winyle", "group", setListOfWykonczenia, [
-            setNaOkoloList,
-          ]);
-        }}
-      >
-        winyle
-      </button>
-      <button
-        className="sublimacja"
-        onClick={(e) =>
-          filterGroup(e, "sublimacja", "group", setListOfWykonczenia, [
-            setNaOkoloList,
-          ])
-        }
-      >
-        sublimacja
-      </button>
-      <button
-        className="mw"
-        onClick={(e) =>
-          filterGroup(e, "mw", "group", setListOfWykonczenia, [setNaOkoloList])
-        }
-      >
-        folie i papiery
-      </button>
-      <form>
+      <div className="group_buttons">
+        <button
+          className="group_buttons-item winyle"
+          onClick={(e) => {
+            filterGroup(e, "winyle", "group", setListOfWykonczenia, [
+              setNaOkoloList,
+            ]);
+          }}
+        >
+          winyle
+        </button>
+        <button
+          className="group_buttons-item sublimacja"
+          onClick={(e) =>
+            filterGroup(e, "sublimacja", "group", setListOfWykonczenia, [
+              setNaOkoloList,
+            ])
+          }
+        >
+          sublimacja
+        </button>
+        <button
+          className="group_buttons-item mw"
+          onClick={(e) =>
+            filterGroup(e, "mw", "group", setListOfWykonczenia, [
+              setNaOkoloList,
+            ])
+          }
+        >
+          folie i papiery
+        </button>
+        <button
+          className="group_buttons-item reset"
+          onClick={(e) => handleReset(e)}
+        >
+          RESET
+        </button>
+      </div>
+
+      <form className="generator_form">
         <label>
           NAOKOŁO:
-          {/* <input
-            onChange={handleSearchChange}
-            value={wykonczenieSearch}
-          ></input> */}
           <input
             onChange={(e) => {
               setNaOkolo(e.target.value);
               //tutaj jest problem bo przekazuje name i od nowa się filtruje tablica wcześniej wyfiltorwana przez group
               filterGroup(e, e.target.value, "name", setNaOkoloList);
+              setIsNaOkoloListVisible(true);
             }}
             value={naOkolo}
           ></input>
-          <ul className="wykonczenia">
+          <ul className={isNaOkoloListVisible ? "wykonczenia" : "hidden"}>
             {naOkoloList &&
               naOkoloList.map((elem, index) => (
                 <li key={index}>
@@ -148,6 +151,7 @@ const GeneratorWykonczen = () => {
                         setNaOkoloList,
                         naOkolo
                       );
+                      setIsNaOkoloListVisible(false);
                     }}
                     className={elem.group}
                   >
@@ -155,6 +159,13 @@ const GeneratorWykonczen = () => {
                   </button>
                 </li>
               ))}
+
+            <Hamburger
+              isMenuActive={isNaOkoloListVisible}
+              handleHamburgerClick={(e) =>
+                setIsNaOkoloListVisible(!isNaOkoloListVisible)
+              }
+            ></Hamburger>
           </ul>
         </label>
       </form>

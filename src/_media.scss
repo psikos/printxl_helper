@@ -8,3 +8,8 @@
     @content;
   }
 }
+@mixin onMobileTo560px {
+  @media (max-width: 560px) {
+    @content;
+  }
+}

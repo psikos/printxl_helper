@@ -1,15 +1,87 @@
 .wykonczenia {
   list-style: none;
+  position: relative;
 
   li button {
-    outline: none;
-    border: none;
     padding: $padding / 2 $padding;
     width: 100%;
-    cursor: pointer;
 
     &:hover {
       font-weight: 600;
     }
   }
+
+  .hamburger-wraper {
+    transform: translateX(300px);
+    top: 0;
+  }
+}
+
+.wykonczenia li button,
+.group_buttons-item {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.group_buttons {
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+
+.group_buttons-item {
+  padding: $padding;
+  margin-right: $padding;
+  color: white;
+
+  &:last-of-type {
+    margin-right: inherit;
+    color: inherit;
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.group_buttons,
+.group_buttons-item,
+.generator_form {
+  border-radius: 20px;
+}
+
+.generator_form,
+.group_buttons {
+  border: 1px dotted grey;
+  padding: $padding;
+}
+.generator_form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin: 0 auto;
+  text-align: center;
+
+  input {
+    padding: $padding / 2 $padding;
+    outline: none;
+    border: none;
+
+    &:focus {
+      border-bottom: 2px solid grey;
+
+      &::after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: red;
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none;
 }
