@@ -59,18 +59,20 @@
   padding: $padding;
 }
 .generator_form {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
   margin: 0 auto;
-  text-align: center;
 
   input {
     padding: $padding / 2 $padding;
     outline: none;
     border: none;
+    border-bottom: 1px solid grey;
 
     &:focus {
-      border-bottom: 2px solid grey;
+      border-bottom: 2px solid $third-base-color;
 
       &::after {
         content: "";
@@ -84,4 +86,14 @@
 
 .hidden {
   display: none;
+}
+
+label,
+fieldset {
+  display: block;
+}
+
+fieldset {
+  height: 100%;
+  border: none;
 }

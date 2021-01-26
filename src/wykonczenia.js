@@ -678,6 +678,295 @@ const wykonczenia = [
       "Wycinanie do formatu nożem na gorąco - zapobiega pruciu się materiału w produktach sublimacyjnych.",
     ],
   },
+
+  //produkty
+
+  {
+    name: "Beachflag F",
+    group: "produkt",
+    kod: "F/rozmiar_dostawca",
+    description: "Beachflag w kształcie F.",
+    detailsDtp: [
+      "Upewnij się, że wszystkie linie siatki nie zostały przycięte na etapie sprawdzania.",
+      "Dodaj opis za pomocą skrótu CTRL + F12.",
+      "Opis powinien znaleźć się w lewym górnym narożniku chyba, że rękaw jest po prawej stronie - wtedy opis też po prawej.",
+      "Obok opisu umieść pole transportu w odpowiednim kolorze wraz z dniem produkcji.",
+      "Zapisz plik z dopiskiem '_inicjały_rip'",
+    ],
+    dtpExceptions: [],
+    additionalInfo: [
+      "Impozycja flag F to zawsze (jeżeli ilość powtórzeń na to pozwala) dwie flagi jedna obrócona 0 180 stopni.",
+    ],
+    exapmlesMaterials: ["flg115B", "bmat215"],
+    sizes: [
+      { size: "S_ST", netto: "80x175", brutto: "92x181" },
+      { size: "M_ST", netto: "105x235", brutto: "117x241" },
+      { size: "L_ST", netto: "130x295", brutto: "141x301" },
+      { size: "XL_ST", netto: "163x382", brutto: "176x389" },
+      { size: "S_BG", netto: "60x175", brutto: "67x181" },
+      { size: "M_BG", netto: "95x240", brutto: "99x244" },
+      { size: "L_BG", netto: "110x320", brutto: "119x324" },
+      { size: "XL_BG", netto: "100x430", brutto: "108x434" },
+    ],
+    detailsDw: [],
+    dwExceptions: [],
+    dhInfo: ["W kodzie uzupełnij rozmiar."],
+    szwalnia: {
+      description:
+        "Beachflag w kształcie F. Występują w różnych wariantach cenowych: ST i BG. Każdy z wariantów wystepuje w róznych rozmiarach.",
+      steps: [
+        {
+          description:
+            "Wycinamy flagę po paserach ( na grafice zaznaczone na niebiesko). Jedyny paser jaki zostaje to ten od rękawa ( zaznaczony na różowo). Jest to konieczne, ponieważ pozostawiona linia wyznacza bok, który należy obrzucić na overlocku.",
+          img: ["1"],
+          templates: ["1"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 1, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Obrzucamy wewnętrzną część rękawa na overlocku tak, aby ściąć cały paser.",
+          img: ["2a", "2b"],
+          templates: ["2"],
+          warrning: [
+            "Dobierz nici pod kolor flagi, chyba że rękaw jest w jednym kolorze; na overlocku używamy nici o grubości 100 i 80",
+            "Należy zwrócić szczególną uwagę czy obrzucony rękaw jest estetyczny oraz czy materiał nie został zbytnio ścięty.",
+          ],
+          time: {
+            S_ST: { sub: 2, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Standardowa BF ma rękaw po lewej stronie. Gdy rozłożymy wydruk, tak jak na grafice to mamy pewność, że strona frontowa jest na wierzchu. Możemy zacząć szyć, flagi tego typu szyjemy jedną igłą. Zaczynamy od dołu. Układamy rękaw na brzegu wydruku. Zaczynamy zszywać ze sobą, pamiętając aby zostawić 2 cm od krawędzi. Zatrzymujemy się 12-13cm przed końcem (góra flagi).",
+          img: ["3a", "3b"],
+          warrning: [
+            "Rękaw przyszyty przy samej krawędzi może się łatwo oderwać.",
+          ],
+          time: {
+            S_ST: { sub: 3, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Szykujemy element z taśmy sztandarowej o wymiarach: 5x12. Należy pośrodku zrobić wycięcie o wysokości 2 cm, tak jak na grafice.",
+          img: ["4"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 4, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Przenosimy się na górę flagi. Przygotowaną w kroku 4 taśmę składamy według zagięcia. Następnie podkładamy pod obydwie warstwy (flagę i rękaw) tak, aby od wcięcia w taśmie do końca FLAGI zostały 2 cm. Pozostały materiał w dalszych krokach posłuży do wykończenia wydruku.",
+          img: ["5"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 5, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Podłożoną w poprzednim kroku taśmę przeszywamy do wcięcia i mocujemy.",
+          img: ["6"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Z reguły rękaw jest trochę dłuższy niż sama flaga, należy ściąć jego nadmiar na równi z wydrukiem.",
+          img: ["7"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Rozkładamy na płasko rękaw przyszyty do flagi razem z 1 warstwą taśmy, przeszywamy w lini prostej oraz mocujemy nasze wzmocnienie.",
+          img: ["8"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Obracamy flagę na tylną stronę. Przenosimy się na dół. Tutaj również musimy wszyć wzmocnienie z taśmy. Używamy jak poprzednio taśmy o szerokości 5cm. Przykładamy ją do rozłożonego na płasko rękawa (zaczynamy od boku obrzuconego na overlocku). 2cm od dołu zostawiamy na wykończenie, a  2,5 cm od boku zostawiamy, aby w dalszym kroku móc wszyć tam sznurek.",
+          img: ["9a", "9b"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Na taśmę podkładamy złożoną na pół czarna, wąska tasiemkę. Powinna mieć 7,5cm na płasko i wystawać poza flagę 2 cm.",
+          img: ["10"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Jesteśmy nadal na dole flagi. Podwijamy pozostawione 2cm materiału, aby estetycznie wykończyć krawędź. Przeszywamy razem z tasiemką.",
+          img: ["11"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Na ściętym boku od tyłu wszywamy sznurek. Potrzebny nam będzie taki o średnicy 4mm. Zawijamy 1 cm flagi, dokładamy do tego sznurek i razem zawijamy na następny 1 cm, przeszywamy kierując się ku górze.",
+          img: ["12a", "12b", "12c"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Wracamy na front flagi. Na dole przy tasiemce powinien pozostać kawałek materiału, należy go zawinąć do środka i przeszyć. Od tego momentu składamy rękaw na flagę i zaczynamy zszywać razem trzymając się obrzuconego boku.",
+          img: ["13a", "13b", "13c"],
+          warrning: [
+            "Jeżeli rękaw ma inny kolor niż reszta flagi, dolną nitkę dobieramy pod niego.",
+          ],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "Koniecznie zamykamy koniec tunelu na górze. Inaczej nie będzie możliwe założenie finalnego produktu na maszt.",
+          img: ["14"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 20 },
+            M_ST: { sub: 10, szw: 20 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+        {
+          description:
+            "W wszytą tasiemkę wkładamy gumkę. W zależności od wielkości flagi: <300cm - 70cm gumka, >300cm - 140cm gumka",
+          img: ["15"],
+          warrning: [],
+          time: {
+            S_ST: { sub: 10, szw: 30 },
+            M_ST: { sub: 10, szw: 25 },
+            L_ST: { sub: 10, szw: 20 },
+            XL_ST: { sub: 10, szw: 20 },
+            S_BG: { sub: 1, szw: 20 },
+            M_BG: { sub: 10, szw: 20 },
+            L_BG: { sub: 10, szw: 20 },
+            XL_BG: { sub: 10, szw: 20 },
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export default wykonczenia;

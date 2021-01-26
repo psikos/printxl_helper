@@ -24,63 +24,59 @@
   }
 }
 
-.title-span {
-  padding: $padding / 2 $padding;
-  border-radius: 5px;
+.title-span,
+.kod {
+  padding: $padding / 1.5 $padding;
+  border-radius: $border-radius / 4;
   color: white;
-}
-
-.wykonczenie {
-  //   display: inline-block;
-  padding: $padding * 2 $padding * 2 $padding;
-  border: 1px dashed grey;
-  border-radius: 5px;
-}
-
-.wykonczenie-title {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  font-size: 0.8rem;
 }
 
 .kod {
-  font-weight: 500;
-  font-size: 1.1rem;
-  color: darken(grey, 30%);
   margin-right: $padding;
-  display: inline-block;
-  position: relative;
-  line-height: 1.1rem;
+  background-color: grey;
 
-  text-align: center;
-
-  &::before {
-    content: "";
-    background-color: grey;
-    width: 2.2rem;
-    height: 2.2rem;
-    position: absolute;
-    border-radius: 50%;
-    border: 3px solid lighten(grey, 30%);
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    // -webkit-box-shadow: 0px 4px 20px 0px rgba(29, 90, 162, 0.3);
-    // -moz-box-shadow: 0px 4px 20px 0px rgba(29, 90, 162, 0.3);
-    // box-shadow: 0px 4px 20px 0px rgba(29, 90, 162, 0.3);
+  &::after {
+    @include label("kod");
   }
 }
 
-.detail {
-  line-height: 2.2rem;
+.title-span {
+  &::after {
+    @include label("grupa");
+  }
+}
+
+.wykonczenie {
+  padding: $padding * 2 $padding * 2 $padding;
+  border: 1px dashed grey;
+  border-radius: $border-radius;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include onMobile {
+      display: inherit;
+    }
+  }
+}
+
+.wykonczenie-title {
+  text-align: center;
+  margin-bottom: $padding / 2;
+}
+
+.wykonczenie-title_under {
+  display: flex;
 }
 
 .exception-ul,
 .important-ul {
-  // list-style: none;
-
   li {
     line-height: 1.5rem;
     margin-bottom: $padding;
@@ -104,6 +100,9 @@
     border: none;
     outline: none;
     cursor: pointer;
+    background-color: transparent;
+    margin: 0;
+    padding: $padding * 2 $padding;
 
     &:focus,
     &:active {
@@ -112,8 +111,6 @@
   }
 
   li {
-    padding: $padding/2 $padding / 2.2;
-
     &::marker {
       font-weight: 700;
       font-size: 1.2rem;
@@ -121,9 +118,32 @@
     }
   }
 }
-.steps button:nth-child(2n-1) {
+.steps li:nth-child(2n-1) {
   background-color: lighten($base-color, 50%);
 }
-.steps button:nth-child(2n) {
+.steps li:nth-child(2n) {
   background-color: lighten($base-color, 30%);
+}
+
+@include print {
+  header,
+  .no-print {
+    display: none;
+  }
+}
+
+.wykonczenie .main {
+  margin: $padding * 3 0;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+
+  div img {
+    width: auto;
+    max-height: 8cm;
+  }
+
+  .regularP {
+    padding-right: $padding * 2;
+    line-height: 1.5rem;
+  }
 }

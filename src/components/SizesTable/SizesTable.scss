@@ -1,0 +1,21 @@
+.sizes {
+  font-size: 0.7rem;
+
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    text-align: center;
+    padding: $padding / 5 $padding / 3;
+    border-right: 1px solid grey;
+
+    &:last-of-type {
+      border-right: none;
+    }
+  }
+
+  tbody th {
+    text-align: right;
+  }
+}

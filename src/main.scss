@@ -1,5 +1,6 @@
 @import "./reset";
 @import "./variables";
+@import "./mixins";
 @import "./media";
 @import "./base";
 
@@ -14,3 +15,5 @@
 @import "./components/WyswietlWykonczenie/WyswietlWykonczenie";
 @import "./components/Wyszukiwarka/Wyszukiwarka";
 @import "./components/GeneratorWykonczen/GeneratorWykonczen";
+@import "./components/Step/Step";
+@import "./components/SizesTable/SizesTable.scss";

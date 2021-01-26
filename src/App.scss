@@ -62,9 +62,7 @@
 .content-wraper {
   display: flex;
   margin-left: 160px;
-  @include onMobile {
-    // margin-left: 140px;
-  }
+  @include background;
   @include onDesktop {
     display: flex;
     margin-left: 300px;

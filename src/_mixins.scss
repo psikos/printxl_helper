@@ -1,0 +1,19 @@
+@mixin label($text) {
+  content: $text;
+  color: rgba($color: #ffffff, $alpha: 0.7);
+  position: absolute;
+  bottom: 1px;
+  left: 3px;
+  font-size: 0.6rem;
+  font-weight: 300;
+}
+
+@mixin background {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(224, 224, 224, 1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}

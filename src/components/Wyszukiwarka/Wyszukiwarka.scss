@@ -6,6 +6,7 @@
   margin: $padding 0 $padding / 3;
   display: grid;
   grid-template-columns: 1fr auto;
+  background-color: transparent;
 
   &:active,
   &:focus {

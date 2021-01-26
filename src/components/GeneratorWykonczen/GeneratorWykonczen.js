@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import wykonczenia from "../../wykonczenia";
-import Hamburger from "../Hamburger/Hamburger";
+import Fieldset from "../Fieldset/Fieldset";
+import GroupButton from "../GroupButton/GroupButton";
 
 const GeneratorWykonczen = () => {
   //lista wszystkich wykończeń
@@ -13,16 +14,82 @@ const GeneratorWykonczen = () => {
   //value inputa na około
   const [naOkolo, setNaOkolo] = useState("");
 
-  //lista na około - powinno z tego się filtrować
+  const [naOkoloUwaga, setNaOkoloUwaga] = useState("");
+
+  const [naOkoloOczka, setNaOkoloOczka] = useState("");
+
   const [naOkoloList, setNaOkoloList] = useState(false);
 
   const [isNaOkoloListVisible, setIsNaOkoloListVisible] = useState(false);
 
+  const [gora, setGora] = useState("");
+
+  const [goraUwaga, setGoraUwaga] = useState("");
+
+  const [goraOczka, setGoraOczka] = useState("");
+
+  const [goraList, setGoraList] = useState(false);
+
+  const [isGoraListVisible, setIsGoraListVisible] = useState(false);
+
+  const [dol, setDol] = useState("");
+
+  const [dolUwaga, setDolUwaga] = useState("");
+
+  const [dolOczka, setDolOczka] = useState("");
+
+  const [dolList, setDolList] = useState(false);
+
+  const [isDolListVisible, setIsDolListVisible] = useState(false);
+
+  const [lewa, setLewa] = useState("");
+
+  const [lewaUwaga, setLewaUwaga] = useState("");
+
+  const [lewaOczka, setLewaOczka] = useState("");
+
+  const [lewaList, setLewaList] = useState(false);
+
+  const [isLewaListVisible, setIsLewaListVisible] = useState(false);
+
+  const [prawa, setPrawa] = useState("");
+
+  const [prawaUwaga, setPrawaUwaga] = useState("");
+
+  const [prawaOczka, setPrawaOczka] = useState("");
+
+  const [prawaList, setPrawaList] = useState(false);
+
+  const [isPrawaListVisible, setIsPrawaListVisible] = useState(false);
+
   //to co się wyświetla
   const [wykonczenie, setWykonczenie] = useState("");
 
-  const setArr = [setNaOkoloList];
-  const inputsArr = [setNaOkolo];
+  const setArr = [
+    setNaOkolo,
+    setNaOkoloOczka,
+    setNaOkoloUwaga,
+    setGora,
+    setGoraOczka,
+    setGoraUwaga,
+    setDol,
+    setDolOczka,
+    setDolUwaga,
+    setLewa,
+    setLewaOczka,
+    setLewaUwaga,
+    setPrawa,
+    setPrawaOczka,
+    setPrawaUwaga,
+  ];
+
+  const inputGroups = [
+    [naOkolo, "NAOKOŁO", naOkoloOczka, naOkoloUwaga],
+    [gora, "GÓRA", goraOczka, goraUwaga],
+    [dol, "DÓŁ", dolOczka, dolUwaga],
+    [lewa, "LEWA", lewaOczka, lewaUwaga],
+    [prawa, "PRAWA", prawaOczka, prawaUwaga],
+  ];
 
   const filterGroup = (e, value, key, toSet, lists) => {
     e.preventDefault();
@@ -59,117 +126,162 @@ const GeneratorWykonczen = () => {
 
   const handleWykonczenieClick = (e, stateToSet, name, kod) => {
     e.preventDefault();
-    stateToSet(`${name} (${kod})`);
+    let tempKod = "";
+    stateToSet === setNaOkolo && (tempKod = `N${kod}`);
+    stateToSet === setGora && (tempKod = `GK${kod}`);
+    stateToSet === setDol && (tempKod = `DK${kod}`);
+    stateToSet === setLewa && (tempKod = `LK${kod}`);
+    stateToSet === setPrawa && (tempKod = `PK${kod}`);
+    stateToSet(`${name} (${tempKod})`);
   };
 
   const handleReset = (e) => {
     e.preventDefault();
     setGroup(false);
-    setArr.forEach((setter) => setter(false));
-    inputsArr.forEach((input) => input(""));
+    setArr.forEach((input) => input(""));
+  };
+
+  const generateWykonczenie = (inputValue, label, oczka, uwaga) => {
+    if (inputValue !== "") {
+      let temp = "";
+      temp = `${label}: ${inputValue}`;
+      oczka &&
+        (temp =
+          temp
+            .split("")
+            .splice(0, temp.length - 1, 1)
+            .join("") + `=${oczka})`);
+      uwaga && (temp = `${temp} UWAGA: ${uwaga}`);
+      return temp;
+    }
+    return null;
   };
 
   useEffect(() => {
     let temp = "";
-    setWykonczenie(() => {
-      if (naOkolo !== "") {
-        temp = `NAOKOŁO: ${naOkolo}`;
-      }
-      return temp;
-    });
-  }, [naOkolo, group]);
+
+    temp = inputGroups
+      .map((group) =>
+        generateWykonczenie(group[0], group[1], group[2], group[3])
+      )
+      .filter((elem) => elem !== null)
+      .join(" | ");
+
+    setWykonczenie(temp);
+    // eslint-disable-next-line
+  }, [group, ...inputGroups.flat()]);
 
   return (
     <div>
       <div className="group_buttons">
-        <button
-          className="group_buttons-item winyle"
-          onClick={(e) => {
-            filterGroup(e, "winyle", "group", setListOfWykonczenia, [
-              setNaOkoloList,
-            ]);
-          }}
-        >
-          winyle
-        </button>
-        <button
-          className="group_buttons-item sublimacja"
-          onClick={(e) =>
-            filterGroup(e, "sublimacja", "group", setListOfWykonczenia, [
-              setNaOkoloList,
-            ])
-          }
-        >
-          sublimacja
-        </button>
-        <button
-          className="group_buttons-item mw"
-          onClick={(e) =>
-            filterGroup(e, "mw", "group", setListOfWykonczenia, [
-              setNaOkoloList,
-            ])
-          }
-        >
-          folie i papiery
-        </button>
-        <button
-          className="group_buttons-item reset"
-          onClick={(e) => handleReset(e)}
-        >
-          RESET
-        </button>
+        <GroupButton
+          className="winyle"
+          label="winyle"
+          filterGroup={filterGroup}
+          setListOfWykonczenia={setListOfWykonczenia}
+          lists={[setNaOkoloList]}
+        ></GroupButton>
+        <GroupButton
+          className="sublimacja"
+          label="sublimacja"
+          filterGroup={filterGroup}
+          setListOfWykonczenia={setListOfWykonczenia}
+          lists={[setNaOkoloList]}
+        ></GroupButton>
+        <GroupButton
+          className="mw"
+          label="folie i papiery"
+          filterGroup={filterGroup}
+          setListOfWykonczenia={setListOfWykonczenia}
+          lists={[setNaOkoloList]}
+        ></GroupButton>
+        <GroupButton
+          className="reset"
+          label="RESET"
+          filterGroup={handleReset}
+          setListOfWykonczenia={setListOfWykonczenia}
+          lists={[setNaOkoloList]}
+        ></GroupButton>
       </div>
 
-      <form className="generator_form">
-        <label>
-          NAOKOŁO:
-          <input
-            onChange={(e) => {
-              setNaOkolo(e.target.value);
-              //tutaj jest problem bo przekazuje name i od nowa się filtruje tablica wcześniej wyfiltorwana przez group
-              filterGroup(e, e.target.value, "name", setNaOkoloList);
-              setIsNaOkoloListVisible(true);
-            }}
-            value={naOkolo}
-          ></input>
-          <ul className={isNaOkoloListVisible ? "wykonczenia" : "hidden"}>
-            {naOkoloList &&
-              naOkoloList.map((elem, index) => (
-                <li key={index}>
-                  <button
-                    onClick={(e) => {
-                      handleWykonczenieClick(
-                        e,
-                        setNaOkolo,
-                        elem.name,
-                        elem.kod
-                      );
-                      filterGroup(
-                        e,
-                        elem.name,
-                        "name",
-                        setNaOkoloList,
-                        naOkolo
-                      );
-                      setIsNaOkoloListVisible(false);
-                    }}
-                    className={elem.group}
-                  >
-                    {elem.name} ({elem.kod})
-                  </button>
-                </li>
-              ))}
-
-            <Hamburger
-              isMenuActive={isNaOkoloListVisible}
-              handleHamburgerClick={(e) =>
-                setIsNaOkoloListVisible(!isNaOkoloListVisible)
-              }
-            ></Hamburger>
-          </ul>
-        </label>
+      <form>
+        <Fieldset
+          mainLabel="NAOKOŁO"
+          mainInputToSet={setNaOkolo}
+          mainInputValue={naOkolo}
+          filterGroup={filterGroup}
+          setListVisibility={setIsNaOkoloListVisible}
+          isListVisible={isNaOkoloListVisible}
+          list={naOkoloList}
+          setList={setNaOkoloList}
+          handleWykonczenieClick={handleWykonczenieClick}
+          oczkaValue={naOkoloOczka}
+          setOczka={setNaOkoloOczka}
+          uwagaValue={naOkoloUwaga}
+          setUwaga={setNaOkoloUwaga}
+        ></Fieldset>
+        <Fieldset
+          mainLabel="GÓRA"
+          mainInputToSet={setGora}
+          mainInputValue={gora}
+          filterGroup={filterGroup}
+          setListVisibility={setIsGoraListVisible}
+          isListVisible={isGoraListVisible}
+          list={goraList}
+          setList={setGoraList}
+          handleWykonczenieClick={handleWykonczenieClick}
+          oczkaValue={goraOczka}
+          setOczka={setGoraOczka}
+          uwagaValue={goraUwaga}
+          setUwaga={setGoraUwaga}
+        ></Fieldset>
+        <Fieldset
+          mainLabel="DÓŁ"
+          mainInputToSet={setDol}
+          mainInputValue={dol}
+          filterGroup={filterGroup}
+          setListVisibility={setIsDolListVisible}
+          isListVisible={isDolListVisible}
+          list={dolList}
+          setList={setDolList}
+          handleWykonczenieClick={handleWykonczenieClick}
+          oczkaValue={dolOczka}
+          setOczka={setDolOczka}
+          uwagaValue={dolUwaga}
+          setUwaga={setDolUwaga}
+        ></Fieldset>
+        <Fieldset
+          mainLabel="LEWA"
+          mainInputToSet={setLewa}
+          mainInputValue={lewa}
+          filterGroup={filterGroup}
+          setListVisibility={setIsLewaListVisible}
+          isListVisible={isLewaListVisible}
+          list={lewaList}
+          setList={setLewaList}
+          handleWykonczenieClick={handleWykonczenieClick}
+          oczkaValue={lewaOczka}
+          setOczka={setLewaOczka}
+          uwagaValue={lewaUwaga}
+          setUwaga={setLewaUwaga}
+        ></Fieldset>
+        <Fieldset
+          mainLabel="PRAWA"
+          mainInputToSet={setPrawa}
+          mainInputValue={prawa}
+          filterGroup={filterGroup}
+          setListVisibility={setIsPrawaListVisible}
+          isListVisible={isPrawaListVisible}
+          list={prawaList}
+          setList={setPrawaList}
+          handleWykonczenieClick={handleWykonczenieClick}
+          oczkaValue={prawaOczka}
+          setOczka={setPrawaOczka}
+          uwagaValue={prawaUwaga}
+          setUwaga={setPrawaUwaga}
+        ></Fieldset>
       </form>
-      <div>{wykonczenie}</div>
+      <div className="copy-container">{wykonczenie}</div>
     </div>
   );
 };
