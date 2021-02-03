@@ -1,17 +1,165 @@
 .detail {
   cursor: pointer;
-}
-
-.hide {
-  display: none;
+  position: relative;
 }
 
 .detail_imgs {
   padding: $padding 0;
+  transform: scale(1);
+  height: auto;
+  transition: all 1s ease-in-out;
+  overflow: hidden;
+
   img {
     max-height: 10cm;
     width: auto;
+    margin-right: $padding;
+    overflow: hidden;
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
+}
+
+.detail_imgs-img {
+  transform: translateY(0%);
+}
+.hide {
+  height: 0;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 1s ease-in-out 0.2;
+}
+
+.detail_content_imgs {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.warning {
+  padding: $padding * 2 $padding;
+
+  span {
+    color: red;
+    font-weight: 700;
+  }
+}
+
+.warnings {
+  border: 2px solid red;
+}
+
+.detail .sizes {
+  padding: 0 0 $padding 80px;
+
+  .sizes-table {
+    transform: scale(0.85);
+    transition: all 0.4s ease-in-out;
+
+    .step-active,
+    &:hover {
+      transform: scale(1);
+    }
+  }
+}
+
+.show {
+  color: $third-base-color;
+  font-weight: bold;
+}
+
+.steps {
+  text-align: center;
+  margin-bottom: $padding * 2;
+
+  ol {
+    list-style: none;
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    margin: 0;
+    padding: $padding * 2 160px $padding * 2 $padding * 2;
+    transition: margin-bottom ease-in-out 0.2s;
+    text-align: justify;
+
+    &:focus,
+    &:active {
+      border: 2px dashed red;
+      margin-bottom: $padding;
+    }
+  }
+
+  li {
+    &::marker {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: $base-color;
+    }
+  }
+}
+.steps li:nth-child(2n-1) {
+  background-color: lighten($base-color, 50%);
+}
+.steps li:nth-child(2n) {
+  background-color: lighten($base-color, 40%);
+}
+
+.step-counter,
+.step-counter_wraper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.step-counter {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  background-color: $base-color;
+  right: $padding * 1.5;
+  top: $padding * 1.5;
+  color: $base-color;
+  font-weight: 700;
+  overflow: hidden;
+  span {
+    display: block;
+    text-align: center;
+  }
+
+  transition: all 2s ease-in-out;
+
+  .spin {
+    transform: rotate(180deg);
+  }
+}
+
+.step-counter_wraper {
+  width: 75px;
+  height: 75px;
+  background-color: lighten($base-color, 50%);
+  flex-direction: column;
+
+  -webkit-box-shadow: -7px 7px 16px 5px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: -7px 7px 16px 5px rgba(0, 0, 0, 0.22);
+  box-shadow: -7px 7px 16px 5px rgba(0, 0, 0, 0.22);
+}
+
+.step-counter_counter {
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+.step-counter_step {
+  text-transform: uppercase;
+  font-size: 0.7rem;
 }
 
 @include print {
@@ -66,14 +214,5 @@
       background-color: rgba($color: #8d8d8d, $alpha: 0.8);
       border-radius: 5px;
     }
-  }
-}
-
-.warning {
-  padding: $padding;
-
-  span {
-    color: red;
-    font-weight: 700;
   }
 }

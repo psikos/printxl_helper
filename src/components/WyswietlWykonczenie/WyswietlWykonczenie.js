@@ -54,7 +54,7 @@ const WyswietlWykonczenie = ({ props, isSzwalnia }) => {
           {isSzwalnia ? (
             szwalnia ? (
               szwalnia.steps.map(
-                ({ description, img, warrning, templates }, index) => (
+                ({ description, img, warrning, templates, time }, index) => (
                   <Step
                     name={name}
                     key={index}
@@ -63,6 +63,9 @@ const WyswietlWykonczenie = ({ props, isSzwalnia }) => {
                     warrning={warrning}
                     szwalnia={szwalnia}
                     templates={templates}
+                    time={time}
+                    sizes={sizes}
+                    index={index}
                   />
                 )
               )

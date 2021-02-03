@@ -1,12 +1,6 @@
 import React from "react";
-const timeConvert = (num) => {
-  const minutes = Math.floor(num / 60);
-  let seconds = num % 60;
 
-  seconds < 10 ? (seconds = "0" + (seconds % 60)) : (seconds = seconds % 60);
-
-  return minutes + ":" + seconds;
-};
+import timeConvert from "../../functions/timeConvert";
 
 const sumConvertedTime = (a, b) => {
   let tempMinutes = parseInt(a.split(":")[0]) + parseInt(b.split(":")[0]);
@@ -14,10 +8,10 @@ const sumConvertedTime = (a, b) => {
 
   if (tempSeconds >= 60) {
     tempMinutes += Math.floor(tempSeconds / 60);
-    tempSeconds % 60 < 10
-      ? (tempSeconds = "0" + (tempSeconds % 60))
-      : (tempSeconds = tempSeconds % 60);
   }
+  tempSeconds % 60 < 10
+    ? (tempSeconds = "0" + (tempSeconds % 60))
+    : (tempSeconds = tempSeconds % 60);
 
   return tempMinutes + ":" + tempSeconds;
 };
