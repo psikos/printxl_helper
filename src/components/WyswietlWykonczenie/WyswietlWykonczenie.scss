@@ -91,13 +91,6 @@
   line-height: 2rem;
 }
 
-@include print {
-  header,
-  .no-print {
-    display: none;
-  }
-}
-
 .wykonczenie .main {
   margin: $padding * 3 0;
   display: grid;
@@ -111,5 +104,76 @@
   .regularP {
     padding-right: $padding * 2;
     line-height: 1.5rem;
+  }
+}
+
+@include print {
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .content-wraper,
+  .container,
+  .content {
+    width: 21cm;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .content {
+    margin-left: 2.5cm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 29cm;
+    page-break-after: always;
+  }
+
+  header,
+  .no-print {
+    display: none;
+  }
+
+  .hide {
+    height: inherit;
+    opacity: 1;
+    transform: translateY(0%);
+  }
+
+  .examples-materials {
+    page-break-after: always;
+  }
+
+  .detail_content_imgs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    & > div {
+      max-width: 50%;
+      object-position: center;
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+    }
+  }
+
+  .warning {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    background-color: rgba($color: #8d8d8d, $alpha: 0.8);
+    border-radius: 5px;
   }
 }

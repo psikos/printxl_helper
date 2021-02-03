@@ -48,6 +48,13 @@ const WyswietlWykonczenie = ({ props, isSzwalnia }) => {
           ></img>
         </div>
       </div>
+      <ul className="examples-materials">
+        {exapmlesMaterials.map((example, index) => (
+          <li className="examples-materials-item" key={index}>
+            {example}
+          </li>
+        ))}
+      </ul>
 
       <div className="steps">
         <ol>
@@ -92,14 +99,6 @@ const WyswietlWykonczenie = ({ props, isSzwalnia }) => {
           </ol>
         </div>
       ) : null}
-
-      <ul className="examples-materials">
-        {exapmlesMaterials.map((example, index) => (
-          <li className="examples-materials-item" key={index}>
-            {example}
-          </li>
-        ))}
-      </ul>
 
       {!isSzwalnia && additionalInfo && (
         <div className="important">

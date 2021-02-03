@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import timeConvert from "../../functions/timeConvert";
 
@@ -13,6 +13,13 @@ const Step = ({
   index,
 }) => {
   const [isPicVisible, setIsPicVisible] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("keydown", (event) => {
+      setIsPicVisible(() => !isPicVisible);
+    });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>

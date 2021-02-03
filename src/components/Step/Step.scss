@@ -5,7 +5,6 @@
 
 .detail_imgs {
   padding: $padding 0;
-  transform: scale(1);
   height: auto;
   transition: all 1s ease-in-out;
   overflow: hidden;
@@ -14,7 +13,6 @@
     max-height: 10cm;
     width: auto;
     margin-right: $padding;
-    overflow: hidden;
     &:last-of-type {
       margin-right: 0;
     }
@@ -125,7 +123,7 @@
   height: 90px;
   background-color: $base-color;
   right: $padding * 1.5;
-  top: $padding * 1.5;
+  top: $padding;
   color: $base-color;
   font-weight: 700;
   overflow: hidden;
@@ -133,17 +131,17 @@
     display: block;
     text-align: center;
   }
+  transform: scale(0.83);
+  transition: transform 1s ease-in-out;
 
-  transition: all 2s ease-in-out;
-
-  .spin {
-    transform: rotate(180deg);
+  &.spin {
+    transform: scale(1);
   }
 }
 
 .step-counter_wraper {
-  width: 75px;
-  height: 75px;
+  width: 74px;
+  height: 74px;
   background-color: lighten($base-color, 50%);
   flex-direction: column;
 
@@ -160,59 +158,4 @@
 .step-counter_step {
   text-transform: uppercase;
   font-size: 0.7rem;
-}
-
-@include print {
-  * {
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  .wykonczenie {
-    width: 100%;
-  }
-
-  .detail {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    position: relative;
-    font-size: 14px;
-    text-align: left;
-    border: 2px solid black;
-    margin-top: 0.5cm;
-
-    button {
-      text-align: left;
-    }
-
-    &:nth-child(4n + 3) {
-      page-break-after: always;
-    }
-    img {
-      max-height: 6.5cm;
-      width: auto;
-      overflow: hidden;
-
-      &.hide {
-        display: inherit;
-      }
-    }
-
-    .detail_imgs {
-      img {
-        &:nth-child(2) {
-          display: none;
-        }
-      }
-    }
-
-    .warning {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 50%;
-      background-color: rgba($color: #8d8d8d, $alpha: 0.8);
-      border-radius: 5px;
-    }
-  }
 }
